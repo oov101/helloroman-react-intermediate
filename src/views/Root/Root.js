@@ -7,7 +7,7 @@ function Root() {
     <div>
       <GlobalStyles />
       <p>This is Root View!</p>
-      <Button width="500px">close / save</Button>
+      <Button>close / save</Button>
       <Button secondary>remove</Button>
     </div>
   );
