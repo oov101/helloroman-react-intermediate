@@ -12,6 +12,7 @@
     "document": true
   },
   "rules": {
+    "import/no-unresolved": 1,
     "react/jsx-filename-extension": [
       1,
       {
@@ -20,5 +21,15 @@
         ]
       }
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    }
   }
 }
