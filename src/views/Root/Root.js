@@ -1,14 +1,20 @@
 import React from 'react';
-import Button from 'components/Button/Button';
+import { ThemeProvider } from 'styled-components';
+import Button from 'components/atoms/Button/Button';
 import GlobalStyles from 'theme/GlobalStyles';
+import { theme } from 'theme/mainTheme';
 
 function Root() {
   return (
     <div>
       <GlobalStyles />
-      <p>This is Root View!</p>
-      <Button>close / save</Button>
-      <Button secondary>remove</Button>
+      <ThemeProvider theme={theme}>
+        <>
+          <p>This is Root View!</p>
+          <Button>close / save</Button>
+          <Button secondary>remove</Button>
+        </>
+      </ThemeProvider>
     </div>
   );
 }
