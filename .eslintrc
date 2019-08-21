@@ -12,7 +12,7 @@
     "document": true
   },
   "rules": {
-    "import/no-unresolved": 1,
+    "import/no-unresolved": 0,
     "react/jsx-filename-extension": [
       1,
       {
