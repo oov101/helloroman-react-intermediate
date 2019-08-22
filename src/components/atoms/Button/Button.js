@@ -8,14 +8,14 @@ const Button = styled.button`
   border: none;
   border-radius: 50px;
   font-family: 'Montserrat';
-  font-weight: 600;
+  font-weight: ${({ theme }) => theme.bold};
   font-size: 16px;
   text-transform: uppercase;
 
   ${({ secondary }) =>
     secondary &&
     css`
-      background-color: #e6e6e6;
+      background-color: hsl(0, 0%, 90%);
       width: 105px;
       height: 30px;
       font-size: 10px;
