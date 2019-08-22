@@ -39,7 +39,7 @@ const DateInfo = styled(Paragraph)`
 const StyledAvatar = styled.img`
   width: 86px;
   height: 86px;
-  border: 5px solid ${({ theme }) => theme.twitter};
+  border: 5px solid ${({ theme }) => theme.twitters};
   border-radius: 50%;
   position: absolute;
   right: 25px;
@@ -69,8 +69,8 @@ const Card = ({ cardType, title, created, twitterName, articleUrl, content }) =>
     <InnerWrapper activeColor={cardType}>
       <StyledHeading>{title}</StyledHeading>
       <DateInfo>{created}</DateInfo>
-      {cardType === 'twitter' && <StyledAvatar src={`http://avatars.io/twitter/${twitterName}`} />}
-      {cardType === 'article' && <StyledLinkButton href={articleUrl} />}
+      {cardType === 'twitters' && <StyledAvatar src={`http://avatars.io/twitter/${twitterName}`} />}
+      {cardType === 'articles' && <StyledLinkButton href={articleUrl} />}
     </InnerWrapper>
     <InnerWrapper flex>
       <Paragraph>{content}</Paragraph>
@@ -80,7 +80,7 @@ const Card = ({ cardType, title, created, twitterName, articleUrl, content }) =>
 );
 
 Card.propTypes = {
-  cardType: PropTypes.oneOf(['note', 'twitter', 'article']),
+  cardType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
   title: PropTypes.string.isRequired,
   created: PropTypes.string.isRequired,
   twitterName: PropTypes.string,
@@ -89,7 +89,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  cardType: 'note',
+  cardType: 'notes',
   twitterName: null,
   articleUrl: null,
 };
