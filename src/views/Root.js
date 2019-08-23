@@ -5,18 +5,19 @@ import ArticlesView from 'views/ArticlesView';
 import NotesView from 'views/NotesView';
 import TwittersView from 'views/TwittersView';
 import DetailsPageView from 'views/DetailsPageView';
+import { routes } from 'routes/index';
 
 const Root = () => (
   <BrowserRouter>
     <MainTemplate>
       <Switch>
-        <Route path="/" exact render={() => <Redirect to="/notes" />} />
-        <Route path="/notes" exact component={NotesView} />
-        <Route path="/notes/:id" component={DetailsPageView} />
-        <Route path="/articles" exact component={ArticlesView} />
-        <Route path="/articles/:id" component={DetailsPageView} />
-        <Route path="/twitters" exact component={TwittersView} />
-        <Route path="/twitters/:id" component={DetailsPageView} />
+        <Route path={routes.home} exact render={() => <Redirect to={routes.notes} />} />
+        <Route path={routes.notes} exact component={NotesView} />
+        <Route path={routes.note} component={DetailsPageView} />
+        <Route path={routes.articles} exact component={ArticlesView} />
+        <Route path={routes.article} component={DetailsPageView} />
+        <Route path={routes.twitters} exact component={TwittersView} />
+        <Route path={routes.twitter} component={DetailsPageView} />
       </Switch>
     </MainTemplate>
   </BrowserRouter>
