@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import UserPageTemplate from 'templates/UserPageTemplate';
-import Heading from 'components/atoms/Heading/Heading';
 import Input from 'components/atoms/Input/Input';
+import Heading from 'components/atoms/Heading/Heading';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 
 const StyledWrapper = styled.div`
@@ -13,7 +13,16 @@ const StyledWrapper = styled.div`
 const StyledGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 25px;
+  grid-gap: 85px;
+
+  @media (max-width: 1500px) {
+    grid-gap: 45px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StyledPageHeader = styled.div`
@@ -49,8 +58,8 @@ const GridTemplate = ({ children, pageType }) => (
 );
 
 GridTemplate.propTypes = {
-  children: PropTypes.element.isRequired,
-  pageType: PropTypes.oneOf(['notes', 'articles', 'twitters']),
+  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
 };
 
 GridTemplate.defaultProps = {

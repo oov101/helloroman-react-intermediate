@@ -2,57 +2,55 @@ import React from 'react';
 import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/molecules/Card/Card';
 
-const articles = [
+const twitters = [
   {
     id: 1,
-    title: 'React on my mind',
+    title: 'Hello Roman',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-    articleUrl: 'https://youtube.com/helloroman',
     created: '1 day',
+    twitterName: 'hello_roman',
   },
   {
     id: 2,
-    title: 'Wish you React',
+    title: 'Redux guy',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-    articleUrl: 'https://youtube.com/helloroman',
     created: '1 day',
+    twitterName: 'dan_abramov',
   },
   {
     id: 3,
-    title: 'You gave React a bad name',
+    title: 'React router stuff',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-    articleUrl: 'https://youtube.com/helloroman',
     created: '5 days',
+    twitterName: 'mjackson',
   },
   {
     id: 4,
-    title: 'Is it React you looking for?',
+    title: 'Super animacje!',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-    articleUrl: 'https://youtube.com/helloroman',
     created: '10 days',
+    twitterName: 'sarah_edo',
   },
 ];
 
-const ArticlesView = () => (
-  <GridTemplate pageType="articles">
-    <>
-      {articles.map(article => (
-        <Card
-          id={article.id}
-          cardType="articles"
-          title={article.title}
-          content={article.content}
-          created={article.created}
-          articleUrl={article.articleUrl}
-          key={article.id}
-        />
-      ))}
-    </>
+const Twitters = () => (
+  <GridTemplate pageType="twitters">
+    {twitters.map(({ title, content, twitterName, created, id }) => (
+      <Card
+        id={id}
+        cardType="twitters"
+        title={title}
+        content={content}
+        twitterName={twitterName}
+        created={created}
+        key={id}
+      />
+    ))}
   </GridTemplate>
 );
 
-export default ArticlesView;
+export default Twitters;

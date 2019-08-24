@@ -14,10 +14,10 @@ const YellowBackground = styled.div`
   align-items: center;
   width: 500px;
   height: 500px;
-  background-color: ${({ theme }) => theme.notes};
+  background: ${({ theme }) => theme.note};
 `;
 
-storiesOf('ButtonIcon', module)
+storiesOf('Atoms/ButtonIcon', module)
   .addDecorator(story => <YellowBackground>{story()}</YellowBackground>)
   .add('Bulb', () => <ButtonIcon icon={bulbIcon} />)
   .add('Active', () => <ButtonIcon active icon={bulbIcon} />)
