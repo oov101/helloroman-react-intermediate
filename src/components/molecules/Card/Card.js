@@ -63,6 +63,10 @@ const StyledLinkButton = styled.a`
 
 const StyledHeading = styled(Heading)`
   margin: 5px 0 0;
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 class Card extends Component {

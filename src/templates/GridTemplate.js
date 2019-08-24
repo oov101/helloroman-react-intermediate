@@ -13,7 +13,7 @@ const StyledWrapper = styled.div`
 const StyledGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 85px;
+  grid-gap: 25px;
 `;
 
 const StyledPageHeader = styled.div`
