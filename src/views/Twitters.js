@@ -29,7 +29,11 @@ Twitters.propTypes = {
       created: PropTypes.string.isRequired,
       twitterName: PropTypes.string.isRequired,
     }),
-  ).isRequired,
+  ),
+};
+
+Twitters.defaultProps = {
+  twitters: [],
 };
 
 const mapStateToProps = ({ twitters }) => ({ twitters });
