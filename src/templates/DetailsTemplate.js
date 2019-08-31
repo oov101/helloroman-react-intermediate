@@ -1,4 +1,5 @@
 import React from 'react';
+import withContext from 'hoc/withContext';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -52,8 +53,8 @@ const StyledImage = styled.img`
   border-radius: 50%;
 `;
 
-const DetailsTemplate = ({ pageType, title, created, content, articleUrl, twitterName }) => (
-  <UserPageTemplate pageType={pageType}>
+const DetailsTemplate = ({ pageContext, title, created, content, articleUrl, twitterName }) => (
+  <UserPageTemplate pageContext={pageContext}>
     <StyledWrapper>
       <StyledPageHeader>
         <StyledHeading big as="h1">
@@ -62,11 +63,11 @@ const DetailsTemplate = ({ pageType, title, created, content, articleUrl, twitte
         <StyledParagraph>{created}</StyledParagraph>
       </StyledPageHeader>
       <Paragraph>{content}</Paragraph>
-      {pageType === 'articles' && <StyledLink href={articleUrl}>Open article</StyledLink>}
-      {pageType === 'twitters' && (
+      {pageContext === 'articles' && <StyledLink href={articleUrl}>Open article</StyledLink>}
+      {pageContext === 'twitters' && (
         <StyledImage alt={title} src={`https://avatars.io/twitter/${twitterName}`} />
       )}
-      <Button as={Link} to={`/${pageType}`} activecolor={pageType}>
+      <Button as={Link} to={`/${pageContext}`} activecolor={pageContext}>
         save / close
       </Button>
     </StyledWrapper>
@@ -74,7 +75,7 @@ const DetailsTemplate = ({ pageType, title, created, content, articleUrl, twitte
 );
 
 DetailsTemplate.propTypes = {
-  pageType: PropTypes.string.isRequired,
+  pageContext: PropTypes.string.isRequired,
   title: PropTypes.string,
   created: PropTypes.string,
   content: PropTypes.string,
@@ -90,4 +91,4 @@ DetailsTemplate.defaultProps = {
   twitterName: '',
 };
 
-export default DetailsTemplate;
+export default withContext(DetailsTemplate);

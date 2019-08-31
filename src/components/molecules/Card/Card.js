@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import withContext from 'hoc/withContext';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import styled, { css } from 'styled-components';
@@ -139,4 +140,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps,
-)(Card);
+)(withContext(Card));
