@@ -1,61 +1,79 @@
+/* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 import withContext from 'hoc/withContext';
 import PropTypes from 'prop-types';
 import DetailsTemplate from 'templates/DetailsTemplate';
-import { routes } from 'routes';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 class DetailsPage extends Component {
   state = {
-    pageContext: 'notes',
+    activeItem: {
+      title: '',
+      content: '',
+      articleUrl: '',
+      twitterName: '',
+    },
   };
 
   componentDidMount() {
-    const { match } = this.props;
+    if (this.props.activeItem) {
+      const [activeItem] = this.props.activeItem;
+      this.setState({ activeItem });
+    } else {
+      const { id } = this.props.match.params;
 
-    switch (match.path) {
-      case routes.twitter:
-        this.setState({ pageContext: 'twitters' });
-        break;
-      case routes.note:
-        this.setState({ pageContext: 'notes' });
-        break;
-      case routes.article:
-        this.setState({ pageContext: 'articles' });
-        break;
-      default:
-        // eslint-disable-next-line no-console
-        console.log('Something went wrong with matching paths');
+      axios
+        .get(`http://localhost:9000/api/note/${id}`)
+        .then(({ data }) => {
+          this.setState({ activeItem: data });
+        })
+        .catch(err => console.log(err));
     }
   }
 
   render() {
-    const dummyArticle = {
-      id: 1,
-      title: 'Wake me up when Vue ends',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      twitterName: 'hello_roman',
-      articleUrl: 'https://youtube.com/helloroman',
-      created: '1 day',
-    };
-
-    const { pageContext } = this.state;
+    const { activeItem } = this.state;
 
     return (
       <DetailsTemplate
-        pageContext={pageContext}
-        title={dummyArticle.title}
-        created={dummyArticle.created}
-        content={dummyArticle.content}
-        articleUrl={dummyArticle.articleUrl}
-        twitterName={dummyArticle.twitterName}
+        title={activeItem.title}
+        content={activeItem.content}
+        articleUrl={activeItem.articleUrl}
+        twitterName={activeItem.twitterName}
       />
     );
   }
 }
 
 DetailsPage.propTypes = {
-  match: PropTypes.shape({ path: PropTypes.string }).isRequired,
+  activeItem: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      content: PropTypes.string,
+      articleUrl: PropTypes.string,
+      twitterName: PropTypes.string,
+    }),
+  ),
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
-export default withContext(DetailsPage);
+DetailsPage.defaultProps = {
+  activeItem: null,
+};
+
+const mapStateToProps = (state, ownProps) => {
+  if (state[ownProps.pageContext]) {
+    return {
+      activeItem: state[ownProps.pageContext].filter(item => item._id === ownProps.match.params.id),
+    };
+  }
+
+  return {};
+};
+
+export default withContext(connect(mapStateToProps)(DetailsPage));

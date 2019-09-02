@@ -6,14 +6,13 @@ import Card from 'components/molecules/Card/Card';
 
 const Articles = ({ articles }) => (
   <GridTemplate>
-    {articles.map(({ title, content, articleUrl, created, id }) => (
+    {articles.map(({ title, content, articleUrl, _id: id }) => (
       <Card
         id={id}
         cardType="articles"
         title={title}
         content={content}
         articleUrl={articleUrl}
-        created={created}
         key={id}
       />
     ))}
@@ -23,13 +22,17 @@ const Articles = ({ articles }) => (
 Articles.propTypes = {
   articles: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       articleUrl: PropTypes.string.isRequired,
       created: PropTypes.string.isRequired,
     }),
-  ).isRequired,
+  ),
+};
+
+Articles.defaultProps = {
+  articles: [],
 };
 
 const mapStateToProps = ({ articles }) => ({ articles });

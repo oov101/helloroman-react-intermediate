@@ -99,10 +99,14 @@ const NewItemBar = ({ pageContext, isVisible, addItem, handleClose }) => (
 );
 
 NewItemBar.propTypes = {
-  pageContext: PropTypes.string.isRequired,
+  pageContext: PropTypes.string,
   isVisible: PropTypes.bool.isRequired,
   addItem: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
+};
+
+NewItemBar.defaultProps = {
+  pageContext: '',
 };
 
 const mapDispatchToProps = dispatch => ({

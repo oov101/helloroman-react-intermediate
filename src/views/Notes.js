@@ -6,8 +6,8 @@ import Card from 'components/molecules/Card/Card';
 
 const Notes = ({ notes }) => (
   <GridTemplate>
-    {notes.map(({ title, content, created, id }) => (
-      <Card id={id} cardType="notes" title={title} content={content} created={created} key={id} />
+    {notes.map(({ title, content, _id: id }) => (
+      <Card id={id} cardType="notes" title={title} content={content} key={id} />
     ))}
   </GridTemplate>
 );
@@ -15,12 +15,15 @@ const Notes = ({ notes }) => (
 Notes.propTypes = {
   notes: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
-      created: PropTypes.string.isRequired,
     }),
-  ).isRequired,
+  ),
+};
+
+Notes.defaultProps = {
+  notes: [],
 };
 
 const mapStateToProps = ({ notes }) => ({ notes });
