@@ -61,7 +61,7 @@ const NewItemBar = ({ pageContext, isVisible, addItem, handleClose }) => (
             onBlur={handleBlur}
             value={values.title}
           />
-          {pageContext === 'articles' && (
+          {pageContext === 'twitters' && (
             <StyledInput
               type="text"
               name="twitterName"
@@ -71,7 +71,7 @@ const NewItemBar = ({ pageContext, isVisible, addItem, handleClose }) => (
               value={values.twitterName}
             />
           )}
-          {pageContext === 'twitters' && (
+          {pageContext === 'articles' && (
             <StyledInput
               type="text"
               name="articleUrl"
