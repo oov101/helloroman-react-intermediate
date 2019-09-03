@@ -29,6 +29,10 @@ const InnerWrapper = styled.div`
     z-index: 9999;
   }
 
+  :first-child {
+    cursor: pointer;
+  }
+
   ${({ flex }) =>
     flex &&
     css`
@@ -81,8 +85,8 @@ class Card extends Component {
       return <Redirect to={`${cardType}/details/${id}`} />;
     }
     return (
-      <StyledWrapper onClick={this.handleCardClick}>
-        <InnerWrapper activeColor={cardType}>
+      <StyledWrapper>
+        <InnerWrapper onClick={this.handleCardClick} activeColor={cardType}>
           <StyledHeading>{title}</StyledHeading>
           {cardType === 'twitters' && (
             <StyledAvatar src={`https://avatars.io/twitter/${twitterName}`} />
